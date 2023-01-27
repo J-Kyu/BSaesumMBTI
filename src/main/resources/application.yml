@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url:  jdbc:h2:E:\Study\Project\saesumMBTI\saesumMBTI
+    url: jdbc:h2:tcp://localhost/E:/Study/Project/saesumMBTI/saesumMBTI
     username: kyu
     password: password
     driver-class-name: org.h2.Driver
