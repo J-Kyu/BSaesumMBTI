@@ -1,6 +1,9 @@
-package com.h154.saesumMBTI.Domain;
+package com.h154.saesumMBTI.Domain.Result;
 
 
+import com.h154.saesumMBTI.Domain.Survey.SelectedAnswerDomain;
+import com.h154.saesumMBTI.Domain.Survey.SurveyDomain;
+import com.h154.saesumMBTI.Domain.UserDomain;
 import com.h154.saesumMBTI.Enum.ResultRecordState;
 import lombok.Getter;
 import lombok.Setter;

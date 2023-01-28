@@ -1,12 +1,11 @@
-package com.h154.saesumMBTI.Domain;
+package com.h154.saesumMBTI.Domain.Survey;
 
 
+import com.h154.saesumMBTI.Domain.Result.ResultRecordDomain;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter

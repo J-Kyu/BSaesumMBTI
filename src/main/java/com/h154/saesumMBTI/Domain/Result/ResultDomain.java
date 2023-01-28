@@ -1,4 +1,4 @@
-package com.h154.saesumMBTI.Domain;
+package com.h154.saesumMBTI.Domain.Result;
 
 
 import com.h154.saesumMBTI.Enum.ResultType;
@@ -28,6 +28,15 @@ public class ResultDomain {
     private List<SelectedProsDomain> selectedProsDomainList = new ArrayList<>();
 
     @OneToMany(mappedBy = "resultDomain")
+    private List<SelectedSituationDomain> selectedSituationDomainList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "resultDomain")
     private List<SelectedConsDomain> selectedConsDomainList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "resultDomain")
+    private List<SelectedTipDomain> selectedTipDomainList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "resultDomain")
+    private List<SelectedHashTagDomain> selectedHashTagDomainList = new ArrayList<>();
 
 }

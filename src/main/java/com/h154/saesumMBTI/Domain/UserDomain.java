@@ -1,5 +1,6 @@
 package com.h154.saesumMBTI.Domain;
 
+import com.h154.saesumMBTI.Domain.Result.ResultRecordDomain;
 import com.h154.saesumMBTI.Enum.OAuthTypeEnum;
 import lombok.Getter;
 import lombok.Setter;

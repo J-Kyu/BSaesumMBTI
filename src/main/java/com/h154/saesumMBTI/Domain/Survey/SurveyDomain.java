@@ -1,4 +1,4 @@
-package com.h154.saesumMBTI.Domain;
+package com.h154.saesumMBTI.Domain.Survey;
 
 import lombok.Getter;
 import lombok.Setter;
