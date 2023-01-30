@@ -1,11 +1,15 @@
 package com.h154.saesumMBTI.Domain;
 
+import com.h154.saesumMBTI.Controller.Form.UserForm;
 import com.h154.saesumMBTI.Domain.Result.ResultRecordDomain;
 import com.h154.saesumMBTI.Enum.OAuthTypeEnum;
+import com.h154.saesumMBTI.Enum.UserRoleType;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +17,15 @@ import java.util.List;
 @Getter
 @Setter
 public class UserDomain {
+
+    public UserDomain(){}
+
+    public UserDomain(UserForm form){
+        this.nickname = form.getNickname();
+        this.accessToken = form.getAccessToken();
+        this.oAuthType = form.getOAuthType();
+        this.uuid = form.getOAuthType()+"_"+form.getUid();
+    }
 
 
     @Id @GeneratedValue
@@ -29,12 +42,14 @@ public class UserDomain {
 
     private String accessToken;
 
+    @Enumerated(EnumType.STRING)
+    private UserRoleType userRoleType;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date genDateTime;
 
-    @OneToOne
-    @JoinColumn(name = "letter_id")
-    private LetterDomain letterDomain;
+    @OneToMany(mappedBy = "userDomain")
+    private List<LetterDomain> letterDomainList = new ArrayList<>();
 
     @OneToMany(mappedBy = "userDomain")
     private List<ResultRecordDomain> resultRecordDomainList;

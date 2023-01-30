@@ -20,7 +20,7 @@ public class AnswerOptionDomain {
 
     private int weight;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private AnswerType answerType;
 
     @ManyToOne

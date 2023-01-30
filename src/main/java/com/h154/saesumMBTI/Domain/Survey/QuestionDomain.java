@@ -20,7 +20,7 @@ public class QuestionDomain {
 
     private String questionContents;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private QuestionType questionType;
 
     @OneToMany(mappedBy = "questionDomain")
