@@ -18,18 +18,22 @@ import java.util.List;
 @Setter
 public class UserDomain {
 
-    public UserDomain(){}
-
-    public UserDomain(UserForm form){
+    public void SetDomainData(UserForm form) {
+        // for creating user
         this.nickname = form.getNickname();
         this.accessToken = form.getAccessToken();
         this.oAuthType = form.getOAuthType();
-        this.uuid = form.getOAuthType()+"_"+form.getUid();
+        this.uuid = form.getOAuthType() + "_" + form.getUid();
+        this.userRoleType = UserRoleType.USER;
+
+        this.genDateTime = new Date();
+
     }
 
 
-    @Id @GeneratedValue
-    @Column(name="user_id")
+    @Id
+    @GeneratedValue
+    @Column(name = "user_id")
     private Long id;
 
     @Column(length = 10)

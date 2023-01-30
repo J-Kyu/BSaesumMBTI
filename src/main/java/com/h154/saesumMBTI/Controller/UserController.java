@@ -44,8 +44,8 @@ public class UserController {
 
         try {
 
-            UserDomain userDomain = new UserDomain(form); //준영속 상태....persist 를 해야 영속상태가 된다
-
+            UserDomain userDomain = new UserDomain(); //준영속 상태....persist 를 해야 영속상태가 된다
+            userDomain.SetDomainData(form);
             userService.join(userDomain);
 
             response = BasicResponse.builder()
