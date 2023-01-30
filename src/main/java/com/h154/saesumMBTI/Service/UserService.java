@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 @Service
@@ -18,7 +19,7 @@ public class UserService {
     @Transactional
     public Long join(UserDomain userDomain){
 
-        validateDuplicateUser(userDomain);
+        validateDuplicateUser(userDomain.getNickname());
         userRepository.save(userDomain);
         return userDomain.getId();
     }
@@ -27,16 +28,22 @@ public class UserService {
         return userRepository.findOne(id);
     }
 
-
-
-    private void validateDuplicateUser(UserDomain user){
-        //EXCEPTION
-        List<UserDomain> findMembers = userRepository.findByNickname(user.getNickname());
-        if (!findMembers.isEmpty()){
-            throw new IllegalStateException("이미 존재하는 회원입니다.");
-        }
+    public UserDomain findUserByNickname(String nickname){
+        return userRepository.findByNickname(nickname);
     }
 
+
+    private void validateDuplicateUser(String nickname){
+        //EXCEPTION
+        UserDomain findMember = userRepository.findByNickname(nickname);
+
+        if (findMember != null){
+            throw new IllegalStateException("이미 존재하는 회원입니다.");
+        }
+
+    }
+
+    @Transactional
     public void deleteUserDomain(Long id){
         userRepository.deleteUser(id);
     }

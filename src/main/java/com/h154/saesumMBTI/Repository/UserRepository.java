@@ -27,15 +27,26 @@ public class UserRepository {
         return userDomain;
     }
 
-    public List<UserDomain> findByNickname(String nickname){
-        return em. createQuery("select m from UserDomain m where m.nickname = :nickname", UserDomain.class )
-                .setParameter("nickname", nickname)
-                .getResultList();
+    public UserDomain findByNickname(String nickname){
+        try {
+            return em.createQuery("select distinct m from UserDomain m where m.nickname = :nickname", UserDomain.class)
+                    .setParameter("nickname", nickname)
+                    .getSingleResult();
+        }
+        catch (NoResultException e){
+            return null;
+        }
     }
 
     public void deleteUser(Long id){
         UserDomain targetUser = this.findOne(id);
-        em.remove(targetUser);
+        if (targetUser == null){
+            throw new RuntimeException("No Such User found. ");
+        }
+        else {
+            //remove target user
+            em.remove(targetUser);
+        }
     }
 
 
