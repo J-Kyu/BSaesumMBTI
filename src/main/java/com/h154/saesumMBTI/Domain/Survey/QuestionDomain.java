@@ -1,5 +1,6 @@
 package com.h154.saesumMBTI.Domain.Survey;
 
+import com.h154.saesumMBTI.Controller.Form.QuestionForm;
 import com.h154.saesumMBTI.Enum.QuestionType;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +13,14 @@ import java.util.List;
 @Getter
 @Setter
 public class QuestionDomain {
+
+
+
+    public void SetQuestionDomain(QuestionForm form){
+        this.questionContents = form.getQuestionContents();
+        this.questionType = form.getQuestionType();
+    }
+
 
     @Id
     @GeneratedValue

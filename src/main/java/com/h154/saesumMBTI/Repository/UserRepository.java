@@ -19,13 +19,7 @@ public class UserRepository {
     public void save(UserDomain userDomain){ em.persist(userDomain);}
 
 
-    public UserDomain findOne(Long id) {
-        UserDomain userDomain = new UserDomain();
-
-        userDomain = em.find(UserDomain.class, id);
-
-        return userDomain;
-    }
+    public UserDomain findOne(Long id) { return em.find(UserDomain.class, id); }
 
     public UserDomain findByNickname(String nickname){
         try {
@@ -41,7 +35,7 @@ public class UserRepository {
     public void deleteUser(Long id){
         UserDomain targetUser = this.findOne(id);
         if (targetUser == null){
-            throw new RuntimeException("No Such User found. ");
+            throw new RuntimeException("No Such User found, Wrong id. ");
         }
         else {
             //remove target user

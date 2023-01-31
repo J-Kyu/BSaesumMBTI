@@ -27,7 +27,6 @@ public class UserDomain {
         this.userRoleType = UserRoleType.USER;
 
         this.genDateTime = new Date();
-
     }
 
 

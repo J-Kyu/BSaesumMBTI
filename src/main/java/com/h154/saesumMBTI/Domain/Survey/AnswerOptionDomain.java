@@ -1,5 +1,7 @@
 package com.h154.saesumMBTI.Domain.Survey;
 
+import com.h154.saesumMBTI.Controller.Form.AnswerOptionForm;
+import com.h154.saesumMBTI.Controller.Form.QuestionForm;
 import com.h154.saesumMBTI.Enum.AnswerType;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,6 +12,12 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class AnswerOptionDomain {
+
+    public void SetAnswerDomain(AnswerOptionForm form){
+        this.answerContents = form.getAnswerContents();
+        this.weight = form.getWeight();
+        this.answerType = form.getAnswerType();
+    }
 
     @Id
     @GeneratedValue
