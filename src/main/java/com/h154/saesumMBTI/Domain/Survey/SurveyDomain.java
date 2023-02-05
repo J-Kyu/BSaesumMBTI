@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,7 +19,11 @@ public class SurveyDomain {
     @Column(length = 50)
     private String title;
 
-    @OneToMany(mappedBy = "surveyDomain")
-    private List<SelectedQuestionDomain> selectedQuestionDomainList;
+    @OneToMany(mappedBy = "surveyDomain", cascade = CascadeType.REMOVE)
+    private List<SelectedQuestionDomain> selectedQuestionDomainList = new ArrayList<>();
+
+    public void addQuestion(SelectedQuestionDomain selectedQuestionDomain){
+        this.selectedQuestionDomainList.add(selectedQuestionDomain);
+    }
 
 }

@@ -2,13 +2,22 @@ package com.h154.saesumMBTI.Service;
 
 import com.h154.saesumMBTI.DTO.AnswerOptionDTO;
 import com.h154.saesumMBTI.DTO.QuestionDTO;
+import com.h154.saesumMBTI.DTO.SurveyDTO;
 import com.h154.saesumMBTI.Domain.Survey.AnswerOptionDomain;
 import com.h154.saesumMBTI.Domain.Survey.QuestionDomain;
+import com.h154.saesumMBTI.Domain.Survey.SelectedQuestionDomain;
+import com.h154.saesumMBTI.Domain.Survey.SurveyDomain;
 import com.h154.saesumMBTI.Enum.AnswerType;
 import com.h154.saesumMBTI.Repository.AnswerOptionRepository;
 import com.h154.saesumMBTI.Repository.QuestionRepository;
+import com.h154.saesumMBTI.Repository.SelectedQuestionRepository;
+import com.h154.saesumMBTI.Repository.SurveyRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +31,9 @@ public class SurveyService {
 
     private final QuestionRepository questionRepository;
     private final AnswerOptionRepository answerOptionRepository;
+    private final SelectedQuestionRepository selectedQuestionRepository;
+
+    private final SurveyRepository surveyRepository;
 
 
     //Question Service
@@ -83,5 +95,63 @@ public class SurveyService {
     }
 
 
+    //Selected Question
+    @Transactional
+    public Long joinSurvey(String body) throws ParseException {
 
+        //parse body
+        JSONParser jsonParse = new JSONParser();
+
+        //create survey domain
+        SurveyDomain surveyDomain = new SurveyDomain();
+        JSONObject jsonObject = (JSONObject) jsonParse.parse(body);
+
+        //check duplicated name
+
+
+        // Set survey Title
+        surveyDomain.setTitle(String.valueOf(jsonObject.get("surveyTitle")));
+
+        //selected question id list
+        JSONArray jsonArray = (JSONArray) jsonObject.get("selectedQuestions");
+        for (Object o  : jsonArray) {
+            Long id = (Long) o;
+
+            //create Selected Question Domain
+            SelectedQuestionDomain selectedQuestionDomain = new SelectedQuestionDomain();
+            selectedQuestionDomain.setSurveyDomain(surveyDomain);
+
+
+
+            //find given question entity
+            QuestionDomain tempQuestion = this.findQuestion(id);
+            selectedQuestionDomain.setQuestionDomain(tempQuestion);
+
+
+            //add on survey Domain
+            surveyDomain.addQuestion(selectedQuestionDomain);
+
+            //save Selected Question Domain
+            selectedQuestionRepository.save(selectedQuestionDomain);
+
+        }
+
+        //save survey
+        surveyRepository.save(surveyDomain);
+
+        return surveyDomain.getId();
+    }
+
+    @Transactional
+    public void removeSurvey(Long id){
+        surveyRepository.remove(id);
+    }
+
+    public SurveyDTO findSurveyWithId(Long id){
+        return new SurveyDTO(surveyRepository.findOne(id));
+    }
+
+    public SurveyDTO findSurveyWithTitle(String title){
+        return new SurveyDTO(surveyRepository.findOneWithTitle(title));
+    }
 }

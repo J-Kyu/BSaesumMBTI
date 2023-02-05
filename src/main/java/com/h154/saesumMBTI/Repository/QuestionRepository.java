@@ -2,6 +2,7 @@ package com.h154.saesumMBTI.Repository;
 
 import com.h154.saesumMBTI.Domain.Survey.QuestionDomain;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.weaver.patterns.TypePatternQuestions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -10,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+@Slf4j
 @Repository
 @RequiredArgsConstructor
 public class QuestionRepository {
@@ -24,6 +26,7 @@ public class QuestionRepository {
     public QuestionDomain findOne(Long id){
         QuestionDomain questionDomain = em.find(QuestionDomain.class, id);
         if(questionDomain == null){
+            log.info("Not Found");
             throw new RuntimeException("No Such Question found, Wrong id. ");
         }
 
