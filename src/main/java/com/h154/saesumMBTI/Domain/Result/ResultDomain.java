@@ -19,24 +19,24 @@ public class ResultDomain {
     @Column(name="result_id")
     private Long id;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private ResultType resultType;
 
     private String resultContents;
 
-    @OneToMany(mappedBy = "resultDomain")
+    @OneToMany(mappedBy = "resultDomain", cascade = CascadeType.REMOVE)
     private List<SelectedProsDomain> selectedProsDomainList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "resultDomain")
+    @OneToMany(mappedBy = "resultDomain", cascade = CascadeType.REMOVE)
     private List<SelectedSituationDomain> selectedSituationDomainList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "resultDomain")
+    @OneToMany(mappedBy = "resultDomain", cascade = CascadeType.REMOVE)
     private List<SelectedConsDomain> selectedConsDomainList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "resultDomain")
+    @OneToMany(mappedBy = "resultDomain", cascade = CascadeType.REMOVE)
     private List<SelectedTipDomain> selectedTipDomainList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "resultDomain")
+    @OneToMany(mappedBy = "resultDomain", cascade = CascadeType.REMOVE)
     private List<SelectedHashTagDomain> selectedHashTagDomainList = new ArrayList<>();
 
 }

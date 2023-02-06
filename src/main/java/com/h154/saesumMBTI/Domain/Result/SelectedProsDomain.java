@@ -17,8 +17,8 @@ public class SelectedProsDomain {
 
 
     @OneToOne
-    @JoinColumn(name="resultCons_id")
-    private ResultConsDomain resultConsDomain;
+    @JoinColumn(name="resultPros_id")
+    private ResultProsDomain resultProsDomain;
 
     @ManyToOne
     @JoinColumn(name = "result_id")

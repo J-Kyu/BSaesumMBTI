@@ -2,13 +2,11 @@ package com.h154.saesumMBTI.Controller;
 
 import com.h154.saesumMBTI.Controller.Form.AnswerOptionForm;
 import com.h154.saesumMBTI.Controller.Form.QuestionForm;
-import com.h154.saesumMBTI.Controller.Form.UserForm;
-import com.h154.saesumMBTI.DTO.AnswerOptionDTO;
-import com.h154.saesumMBTI.DTO.QuestionDTO;
-import com.h154.saesumMBTI.DTO.SurveyDTO;
+import com.h154.saesumMBTI.DTO.Survey.AnswerOptionDTO;
+import com.h154.saesumMBTI.DTO.Survey.QuestionDTO;
+import com.h154.saesumMBTI.DTO.Survey.SurveyDTO;
 import com.h154.saesumMBTI.Domain.Survey.AnswerOptionDomain;
 import com.h154.saesumMBTI.Domain.Survey.QuestionDomain;
-import com.h154.saesumMBTI.Domain.UserDomain;
 import com.h154.saesumMBTI.Enum.AnswerType;
 import com.h154.saesumMBTI.Response.BasicResponse;
 import com.h154.saesumMBTI.Service.SurveyService;

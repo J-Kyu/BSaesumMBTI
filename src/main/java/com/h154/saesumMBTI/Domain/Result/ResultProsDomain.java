@@ -15,8 +15,5 @@ public class ResultProsDomain {
     @Column(name="resultPros_id")
     private Long id;
 
-
     private String prosContents;
-
-
 }

@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/E:/Study/Project/saesumMBTI/saesumMBTI
+    url: jdbc:h2:tcp://localhost/E:/Study/Project/saesumMBTI/saesumMBTI;MODE=MySQL;
     username: kyu
     password: password
     driver-class-name: org.h2.Driver
@@ -9,6 +9,7 @@ spring:
       ddl-auto: create-drop
     properties:
       hibernate:
+        show_sql: true
         format_sql: true
 server:
   port: 8080

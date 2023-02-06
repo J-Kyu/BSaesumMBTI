@@ -54,7 +54,7 @@ public class UserDomain {
     @OneToMany(mappedBy = "userDomain")
     private List<LetterDomain> letterDomainList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "userDomain")
+    @OneToMany(mappedBy = "user")
     private List<ResultRecordDomain> resultRecordDomainList;
 
 

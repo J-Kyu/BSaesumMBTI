@@ -1,8 +1,8 @@
 package com.h154.saesumMBTI.Service;
 
-import com.h154.saesumMBTI.DTO.AnswerOptionDTO;
-import com.h154.saesumMBTI.DTO.QuestionDTO;
-import com.h154.saesumMBTI.DTO.SurveyDTO;
+import com.h154.saesumMBTI.DTO.Survey.AnswerOptionDTO;
+import com.h154.saesumMBTI.DTO.Survey.QuestionDTO;
+import com.h154.saesumMBTI.DTO.Survey.SurveyDTO;
 import com.h154.saesumMBTI.Domain.Survey.AnswerOptionDomain;
 import com.h154.saesumMBTI.Domain.Survey.QuestionDomain;
 import com.h154.saesumMBTI.Domain.Survey.SelectedQuestionDomain;
