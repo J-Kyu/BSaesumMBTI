@@ -1,4 +1,4 @@
-package com.h154.saesumMBTI.Repository;
+package com.h154.saesumMBTI.Repository.Survey;
 
 
 import com.h154.saesumMBTI.Domain.Survey.AnswerOptionDomain;

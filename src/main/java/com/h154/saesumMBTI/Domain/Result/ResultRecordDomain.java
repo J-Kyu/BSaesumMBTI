@@ -24,7 +24,7 @@ public class ResultRecordDomain {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private UserDomain userDomain;
+    private UserDomain user;
 
     @Enumerated(EnumType.ORDINAL)
     private ResultRecordState resultRecordState;
