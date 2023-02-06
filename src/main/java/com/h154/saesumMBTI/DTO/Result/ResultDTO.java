@@ -31,11 +31,11 @@ public class ResultDTO {
 
     private List<ResultProsDTO> resultProsDTOList = new ArrayList<>();
 
-    private List<ProsSituationDTO> prosSituationDTOList = new ArrayList<>();
+//    private List<ProsSituationDTO> prosSituationDTOList = new ArrayList<>();
 
     private List<ResultConsDTO> resultConsDTOList = new ArrayList<>();
 
-    private List<ConsTipDTO> consTipDTOList = new ArrayList<>();
+//    private List<ConsTipDTO> consTipDTOList = new ArrayList<>();
 
     private List<HashTagDTO> hashTagDTOList = new ArrayList<>();
 }

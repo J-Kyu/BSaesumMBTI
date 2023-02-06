@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -16,4 +18,8 @@ public class ResultProsDomain {
     private Long id;
 
     private String prosContents;
+
+    @OneToMany(mappedBy = "resultProsDomain", cascade = CascadeType.REMOVE)
+    private List<SelectedSituationDomain> selectedSituationDomainList = new ArrayList<>();
+
 }

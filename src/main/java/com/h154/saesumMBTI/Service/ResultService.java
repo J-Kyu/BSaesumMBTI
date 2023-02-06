@@ -177,9 +177,11 @@ public class ResultService {
             resultDTO.getResultProsDTOList().add(new ResultProsDTO(spd.getResultProsDomain()));
         }
         //Find Situation
+        /*
         for ( SelectedSituationDomain ssd: resultDomain.getSelectedSituationDomainList()) {
             resultDTO.getProsSituationDTOList().add(new ProsSituationDTO(ssd.getProsSituationDomain()));
         }
+         */
 
 
         //Find Cons
@@ -188,9 +190,11 @@ public class ResultService {
         }
 
         //Find Tips
+        /*
         for ( SelectedTipDomain std: resultDomain.getSelectedTipDomainList()) {
             resultDTO.getConsTipDTOList().add(new ConsTipDTO(std.getConsTipDomain()));
         }
+         */
 
 
         //Find Hash Tag

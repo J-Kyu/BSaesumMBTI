@@ -22,6 +22,6 @@ public class SelectedSituationDomain {
     private ProsSituationDomain prosSituationDomain;
 
     @ManyToOne
-    @JoinColumn(name = "result_id")
-    private ResultDomain resultDomain;
+    @JoinColumn(name = "resultPros_id")
+    private ResultProsDomain resultProsDomain;
 }

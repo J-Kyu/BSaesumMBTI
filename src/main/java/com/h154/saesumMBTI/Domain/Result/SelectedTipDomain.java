@@ -19,7 +19,9 @@ public class SelectedTipDomain {
     @JoinColumn(name = "consTip_id")
     private ConsTipDomain consTipDomain;
 
+
     @ManyToOne
-    @JoinColumn(name = "result_id")
-    private ResultDomain resultDomain;
+    @JoinColumn(name = "resultCons_id")
+    private ResultConsDomain resultConsDomain;
+
 }
