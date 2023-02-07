@@ -20,22 +20,22 @@ public class ResultDTO {
     public ResultDTO(ResultDomain resultDomain){
         this.id = resultDomain.getId();
         this.resultType = resultDomain.getResultType();
+        this.resultContents = resultDomain.getResultContents();
+        this.resultStringCategory = resultDomain.getResultStringCategory();
     }
 
     private Long id;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private ResultType resultType;
 
     private String resultContents;
 
+    private String resultStringCategory;
+
     private List<ResultProsDTO> resultProsDTOList = new ArrayList<>();
 
-//    private List<ProsSituationDTO> prosSituationDTOList = new ArrayList<>();
-
     private List<ResultConsDTO> resultConsDTOList = new ArrayList<>();
-
-//    private List<ConsTipDTO> consTipDTOList = new ArrayList<>();
 
     private List<HashTagDTO> hashTagDTOList = new ArrayList<>();
 }
