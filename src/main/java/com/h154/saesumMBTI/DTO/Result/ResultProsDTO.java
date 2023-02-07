@@ -23,7 +23,6 @@ public class ResultProsDTO {
             this.prosSituationDTOList.add(new ProsSituationDTO(ssd.getProsSituationDomain()));
         }
     }
-
     private Long id;
 
     private String prosContents;

@@ -1,5 +1,7 @@
 package com.h154.saesumMBTI.Domain.Result;
 
+import com.h154.saesumMBTI.Controller.Form.ProsSituationForm;
+import com.h154.saesumMBTI.Controller.Form.ResultConsForm;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +14,11 @@ import javax.persistence.Id;
 @Getter
 @Setter
 public class ProsSituationDomain {
+
+    public void SetDomainData(ProsSituationForm form){
+        this.situationContents = form.getSituationContents();
+    }
+
 
     @Id
     @GeneratedValue

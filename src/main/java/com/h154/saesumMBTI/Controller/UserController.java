@@ -60,8 +60,8 @@ public class UserController {
         catch (Exception e){
 
             response = BasicResponse.builder()
-                    .code(200)
-                    .httpStatus(HttpStatus.OK)
+                    .code(500)
+                    .httpStatus(HttpStatus.INTERNAL_SERVER_ERROR)
                     .message("회원 생성 실패."+e.getMessage())
                     .result(Collections.emptyList())
                     .build();

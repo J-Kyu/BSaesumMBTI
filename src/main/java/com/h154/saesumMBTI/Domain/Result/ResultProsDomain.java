@@ -1,5 +1,6 @@
 package com.h154.saesumMBTI.Domain.Result;
 
+import com.h154.saesumMBTI.Controller.Form.ResultProsForm;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,10 @@ import java.util.List;
 @Getter
 @Setter
 public class ResultProsDomain {
+
+    public void SetDomainData(ResultProsForm form){
+        this.prosContents = form.getProsContents();
+    }
 
     @Id
     @GeneratedValue

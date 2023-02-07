@@ -5,6 +5,9 @@ import com.h154.saesumMBTI.Domain.Result.*;
 import com.h154.saesumMBTI.Repository.Result.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,7 +44,7 @@ public class ResultService {
     /*** PROS ***/
     // PROS DOMAIN
     @Transactional
-    public Long joinResultPros(ResultProsDomain resultProsDomain){
+    public Long joinResultPros(ResultProsDomain resultProsDomain) {
         resultProsRepository.save(resultProsDomain);
         return resultProsDomain.getId();
     }
@@ -50,6 +53,13 @@ public class ResultService {
 
     @Transactional
     public void removeResultPros(Long id){resultProsRepository.remove(id);}
+
+    @Transactional
+    public void updateResultProsContents(Long id, String contents){
+        ResultProsDomain resultProsDomain = resultProsRepository.findOne(id);
+        resultProsDomain.setProsContents(contents);
+        return ;
+    }
 
     // SELECTED PROS
     @Transactional
@@ -67,6 +77,13 @@ public class ResultService {
     public Long joinProsSituation(ProsSituationDomain prosSituationDomain){
         prosSituationRepository.save(prosSituationDomain);
         return prosSituationDomain.getId();
+    }
+
+    @Transactional
+    public void updateProsSituation(Long id, String contents){
+        ProsSituationDomain prosSituationDomain = prosSituationRepository.findOne(id);
+        prosSituationDomain.setSituationContents(contents);
+        return ;
     }
 
     public ProsSituationDTO findProsSituation(Long id){return new ProsSituationDTO(prosSituationRepository.findOne(id));}
@@ -90,6 +107,13 @@ public class ResultService {
     public Long joinResultCons(ResultConsDomain resultConsDomain){
         resultConsRepository.save(resultConsDomain);
         return resultConsDomain.getId();
+    }
+
+    @Transactional
+    public void updateResultConsContents(Long id, String contents){
+        ResultConsDomain resultConsDomain = resultConsRepository.findOne(id);
+        resultConsDomain.setConsContents(contents);
+        return ;
     }
 
     public ResultConsDTO findResultCons(Long id){return new ResultConsDTO(resultConsRepository.findOne(id));}
@@ -117,10 +141,21 @@ public class ResultService {
         return consTipDomain.getId();
     }
 
+    @Transactional
+    public void updateConsTip(Long id, String contents){
+
+        ConsTipDomain consTipDomain = consTipRepository.findOne(id);
+        consTipDomain.setTipContents(contents);
+        return ;
+    }
+
+
     public ConsTipDTO findConsTip(Long id){return new ConsTipDTO(consTipRepository.findOne(id));}
 
     @Transactional
     public void removeConsTip(Long id){consTipRepository.remove(id);}
+
+
 
     // SELECTED TIP
     @Transactional
