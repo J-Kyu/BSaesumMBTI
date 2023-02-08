@@ -3,15 +3,9 @@ package com.h154.saesumMBTI.Service;
 import com.h154.saesumMBTI.DTO.Survey.AnswerOptionDTO;
 import com.h154.saesumMBTI.DTO.Survey.QuestionDTO;
 import com.h154.saesumMBTI.DTO.Survey.SurveyDTO;
-import com.h154.saesumMBTI.Domain.Survey.AnswerOptionDomain;
-import com.h154.saesumMBTI.Domain.Survey.QuestionDomain;
-import com.h154.saesumMBTI.Domain.Survey.SelectedQuestionDomain;
-import com.h154.saesumMBTI.Domain.Survey.SurveyDomain;
+import com.h154.saesumMBTI.Domain.Survey.*;
 import com.h154.saesumMBTI.Enum.AnswerType;
-import com.h154.saesumMBTI.Repository.Survey.AnswerOptionRepository;
-import com.h154.saesumMBTI.Repository.Survey.QuestionRepository;
-import com.h154.saesumMBTI.Repository.Survey.SelectedQuestionRepository;
-import com.h154.saesumMBTI.Repository.Survey.SurveyRepository;
+import com.h154.saesumMBTI.Repository.Survey.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
@@ -32,6 +26,8 @@ public class SurveyService {
     private final QuestionRepository questionRepository;
     private final AnswerOptionRepository answerOptionRepository;
     private final SelectedQuestionRepository selectedQuestionRepository;
+
+    private final SelectedAnswerRepository selectedAnswerRepository;
 
     private final SurveyRepository surveyRepository;
 
@@ -94,8 +90,13 @@ public class SurveyService {
         return answerOptionDTOList;
     }
 
+    public AnswerOptionDomain findAnswerOptionDomain(Long id){
+        return answerOptionRepository.findOne(id);
+    }
 
-    //Selected Question
+
+
+    //Survey & Selected Question
     @Transactional
     public Long joinSurvey(String body) throws ParseException {
 
@@ -154,4 +155,26 @@ public class SurveyService {
     public SurveyDTO findSurveyWithTitle(String title){
         return new SurveyDTO(surveyRepository.findOneWithTitle(title));
     }
+    public SurveyDomain findSurveyDomain(Long id){
+        return surveyRepository.findOne(id);
+    }
+
+    //selected answer domain
+
+    @Transactional
+    public Long joinSelectedAnswer(SelectedAnswerDomain selectedAnswerDomain){
+        selectedAnswerRepository.save(selectedAnswerDomain);
+        return selectedAnswerDomain.getId();
+    }
+
+    public SelectedAnswerDomain findSelectedAnswerDomain(Long id){
+        return selectedAnswerRepository.findOne(id);
+    }
+    @Transactional
+    public void removeSelectedAnswer(Long id){
+        selectedAnswerRepository.remove(id);
+    }
+
+
+
 }

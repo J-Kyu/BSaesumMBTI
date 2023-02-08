@@ -35,8 +35,8 @@ public class UserController {
         if (result.hasErrors()){
 
             response = BasicResponse.builder()
-                    .code(200)
-                    .httpStatus(HttpStatus.OK)
+                    .code(400)
+                    .httpStatus(HttpStatus.BAD_REQUEST)
                     .message("Input Form 오류: "+result.toString())
                     .result(Collections.emptyList())
                     .build();

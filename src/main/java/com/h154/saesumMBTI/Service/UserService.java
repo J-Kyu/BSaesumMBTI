@@ -1,14 +1,10 @@
 package com.h154.saesumMBTI.Service;
 
-import com.h154.saesumMBTI.DTO.UserDTO;
 import com.h154.saesumMBTI.Domain.UserDomain;
 import com.h154.saesumMBTI.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.NoResultException;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -24,7 +20,7 @@ public class UserService {
         return userDomain.getId();
     }
 
-    public UserDomain findUser(Long id){
+    public UserDomain findUserDomain(Long id){
         return userRepository.findOne(id);
     }
 

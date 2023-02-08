@@ -26,7 +26,7 @@ public class ResultRecordDomain {
     @JoinColumn(name = "user_id")
     private UserDomain user;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private ResultRecordState resultRecordState;
 
     @OneToOne

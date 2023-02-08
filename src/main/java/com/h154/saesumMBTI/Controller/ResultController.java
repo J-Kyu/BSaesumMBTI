@@ -1,16 +1,11 @@
 package com.h154.saesumMBTI.Controller;
 
 
-import com.h154.saesumMBTI.Controller.Form.ConsTipForm;
-import com.h154.saesumMBTI.Controller.Form.ProsSituationForm;
-import com.h154.saesumMBTI.Controller.Form.ResultConsForm;
-import com.h154.saesumMBTI.Controller.Form.ResultProsForm;
+import com.h154.saesumMBTI.Controller.Form.*;
 import com.h154.saesumMBTI.DTO.Result.*;
-import com.h154.saesumMBTI.Domain.Result.ConsTipDomain;
-import com.h154.saesumMBTI.Domain.Result.ProsSituationDomain;
-import com.h154.saesumMBTI.Domain.Result.ResultConsDomain;
-import com.h154.saesumMBTI.Domain.Result.ResultProsDomain;
+import com.h154.saesumMBTI.Domain.Result.*;
 import com.h154.saesumMBTI.Domain.UserDomain;
+import com.h154.saesumMBTI.Enum.ResultRecordState;
 import com.h154.saesumMBTI.Response.BasicResponse;
 import com.h154.saesumMBTI.Service.ResultService;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +29,8 @@ import java.util.Collections;
 public class ResultController {
 
     private final ResultService resultService;
+
+
 
     //result
     @GetMapping("/result/{id}/find")
@@ -655,6 +652,18 @@ public class ResultController {
         return new ResponseEntity<>(response, response.getHttpStatus());
     }
 
+
+    //selected result <--> pros
+
+
+    //selected result <--> cons
+
+
+    // selected pros <--> situation
+
+    // selected cons <--> tip
+
+    // selected result  <--> hash tag
 
 
 }

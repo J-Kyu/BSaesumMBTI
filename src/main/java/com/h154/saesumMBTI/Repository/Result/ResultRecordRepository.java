@@ -23,7 +23,7 @@ public class ResultRecordRepository {
     public void remove(Long id){
         ResultRecordDomain targetDomain = this.findOne(id);
         if (targetDomain == null){
-            throw new RuntimeException("No Such Cons found, Wrong id. ");
+            throw new RuntimeException("No Such Result Record found, Wrong id. ");
         }
         else {
             //remove target user

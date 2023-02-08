@@ -37,4 +37,7 @@ public class ResultDomain {
     @OneToMany(mappedBy = "resultDomain", cascade = CascadeType.REMOVE)
     private List<SelectedHashTagDomain> selectedHashTagDomainList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "resultDomain", cascade = CascadeType.REMOVE)
+    private List<SelectedMBTIDomain> selectedMBTIDomainList = new ArrayList<>();
+
 }
