@@ -60,10 +60,10 @@ public class ResultService {
     }
 
     @Transactional
-    public void updateResultProsContents(Long id, String contents) {
+    public ResultProsDTO updateResultProsContents(Long id, String contents) {
         ResultProsDomain resultProsDomain = resultProsRepository.findOne(id);
         resultProsDomain.setProsContents(contents);
-        return;
+        return new ResultProsDTO(resultProsDomain);
     }
 
     // SELECTED PROS
@@ -88,10 +88,10 @@ public class ResultService {
     }
 
     @Transactional
-    public void updateProsSituation(Long id, String contents) {
+    public ProsSituationDTO updateProsSituation(Long id, String contents) {
         ProsSituationDomain prosSituationDomain = prosSituationRepository.findOne(id);
         prosSituationDomain.setSituationContents(contents);
-        return;
+        return new ProsSituationDTO(prosSituationDomain);
     }
 
     public ProsSituationDTO findProsSituation(Long id) {
@@ -209,6 +209,14 @@ public class ResultService {
     public void removeHashTag(Long id) {
         hashTagRepository.remove(id);
     }
+
+    @Transactional
+    public HashTagDTO updateHashTag(Long id, String contents) {
+        HashTagDomain hashTagDomain = hashTagRepository.findOne(id);
+        hashTagDomain.setHashTagContents(contents);
+        return new HashTagDTO(hashTagDomain);
+    }
+
 
     // SELECTED TIP
     @Transactional
