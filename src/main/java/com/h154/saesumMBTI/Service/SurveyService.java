@@ -1,5 +1,6 @@
 package com.h154.saesumMBTI.Service;
 
+import com.h154.saesumMBTI.Controller.Body.SurveyBody;
 import com.h154.saesumMBTI.DTO.Survey.AnswerOptionDTO;
 import com.h154.saesumMBTI.DTO.Survey.QuestionDTO;
 import com.h154.saesumMBTI.DTO.Survey.SurveyDTO;
@@ -45,8 +46,8 @@ public class SurveyService {
     }
 
 
-    public QuestionDomain findQuestion(Long id){
-        return questionRepository.findOne(id);
+    public QuestionDTO findQuestion(Long id){
+        return new QuestionDTO(questionRepository.findOne(id));
     }
 
     public List<QuestionDTO> findQuestionsByPage(int page, int count){
@@ -98,7 +99,7 @@ public class SurveyService {
 
     //Survey & Selected Question
     @Transactional
-    public Long joinSurvey(String body) throws ParseException {
+    public SurveyDTO joinSurvey(String body) throws ParseException {
 
         //parse body
         JSONParser jsonParse = new JSONParser();
@@ -125,7 +126,7 @@ public class SurveyService {
 
 
             //find given question entity
-            QuestionDomain tempQuestion = this.findQuestion(id);
+            QuestionDomain tempQuestion = questionRepository.findOne(id);
             selectedQuestionDomain.setQuestionDomain(tempQuestion);
 
 
@@ -140,8 +141,43 @@ public class SurveyService {
         //save survey
         surveyRepository.save(surveyDomain);
 
-        return surveyDomain.getId();
+        return new SurveyDTO(surveyDomain);
     }
+
+    @Transactional
+    public SurveyDTO joinSurvey(SurveyBody surveyBody){
+
+
+        //create survey domain
+        SurveyDomain surveyDomain = new SurveyDomain();
+        surveyDomain.setTitle(surveyBody.getSurveyTitle());
+
+        for (Long id : surveyBody.getSelectedQuestionsId()){
+            //create Selected Question Domain
+            SelectedQuestionDomain selectedQuestionDomain = new SelectedQuestionDomain();
+            selectedQuestionDomain.setSurveyDomain(surveyDomain);
+
+
+
+            //find given question entity
+            QuestionDomain tempQuestion = questionRepository.findOne(id);
+            selectedQuestionDomain.setQuestionDomain(tempQuestion);
+
+
+            //add on survey Domain
+            surveyDomain.addQuestion(selectedQuestionDomain);
+
+            //save Selected Question Domain
+            selectedQuestionRepository.save(selectedQuestionDomain);
+        }
+
+
+        //save survey
+        surveyRepository.save(surveyDomain);
+
+        return new SurveyDTO(surveyDomain);
+    }
+
 
     @Transactional
     public void removeSurvey(Long id){
