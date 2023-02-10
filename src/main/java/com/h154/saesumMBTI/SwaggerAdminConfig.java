@@ -8,20 +8,21 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 
+
 @OpenAPIDefinition(
-        info = @Info(title = "새섬미 API 명세서",
-                description = "H154 새섬미 서비스 API 명세서",
+        info = @Info(title = "새섬미 Admin API 명세서",
+                description = "H154 새섬미 Admin 서비스 API 명세서",
                 version = "v1"))
 @RequiredArgsConstructor
 @Configuration
-public class SwaggerConfig {
+public class SwaggerAdminConfig {
 
     @Bean
-    public GroupedOpenApi saesumAPI() {
-        String[] paths = {"/v1/api/**"};
+    public GroupedOpenApi saesumAdminAPI() {
+        String[] paths = {"/v1/admin/api/**"};
 
         return GroupedOpenApi.builder()
-                .group("새섬미 API v1")
+                .group("새섬미 Admin API v1")
                 .pathsToMatch(paths)
                 .build();
     }

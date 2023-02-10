@@ -6,12 +6,10 @@ import com.h154.saesumMBTI.Controller.Form.QuestionForm;
 import com.h154.saesumMBTI.DTO.Survey.AnswerOptionDTO;
 import com.h154.saesumMBTI.DTO.Survey.QuestionDTO;
 import com.h154.saesumMBTI.DTO.Survey.SurveyDTO;
-import com.h154.saesumMBTI.DTO.UserDTO;
 import com.h154.saesumMBTI.Domain.Survey.AnswerOptionDomain;
 import com.h154.saesumMBTI.Domain.Survey.QuestionDomain;
 import com.h154.saesumMBTI.Enum.AnswerType;
 import com.h154.saesumMBTI.Response.BadRequestResponse;
-import com.h154.saesumMBTI.Response.BasicResponse;
 import com.h154.saesumMBTI.Response.InternalServerErrorResponse;
 import com.h154.saesumMBTI.Response.OkResponse;
 import com.h154.saesumMBTI.Response.SurveyResponse.OKResponseAnswerOptionDTO;
@@ -20,30 +18,24 @@ import com.h154.saesumMBTI.Response.SurveyResponse.OKResponseSurveyDTO;
 import com.h154.saesumMBTI.Response.UserReponse.OKResponseUserDTO;
 import com.h154.saesumMBTI.Service.SurveyService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.repository.query.Param;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @RestController
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/v1/api")
+@RequestMapping("/v1/admin/api")
 public class SurveyController {
 
     private final SurveyService surveyService;
