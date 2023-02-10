@@ -1,5 +1,6 @@
 package com.h154.saesumMBTI.Service;
 
+import com.h154.saesumMBTI.Controller.Body.FinishResultRecordBody;
 import com.h154.saesumMBTI.DTO.Result.ResultRecordDTO;
 import com.h154.saesumMBTI.Domain.Result.ResultDomain;
 import com.h154.saesumMBTI.Domain.Result.ResultRecordDomain;
@@ -95,6 +96,48 @@ public class ResultRecordService {
         resultRecordDomain.setResultRecordState(ResultRecordState.DONE);
 
     }
+
+    @Transactional
+    public ResultRecordDTO finishResultRecord(Long id, FinishResultRecordBody body) throws ParseException  {
+
+        ResultRecordDomain resultRecordDomain = resultRecordRepository.findOne(id);
+
+
+        //create mbti
+        Map<AnswerType, Integer> mbti = new HashMap<>();
+        for (AnswerType at: AnswerType.values()) {
+            mbti.put(at,0);
+        }
+
+        for (Long answerOptionId  : body.getSelectedAnswerOptions()) {
+            AnswerOptionDomain answerOptionDomain = surveyService.findAnswerOptionDomain(answerOptionId);
+
+            //accumulate answer type
+            AnswerType at = answerOptionDomain.getAnswerType();
+            int weight = answerOptionDomain.getWeight();
+            mbti.put(at, mbti.get(at)+weight);
+
+            //create selected answer
+            SelectedAnswerDomain selectedAnswerDomain = new SelectedAnswerDomain();
+            selectedAnswerDomain.setAnswerOptionDomain(answerOptionDomain);
+            selectedAnswerDomain.setResultRecordDomain(resultRecordDomain);
+            surveyService.joinSelectedAnswer(selectedAnswerDomain);
+
+            //add selected answer domain to result record domain
+            resultRecordDomain.getSelectedAnswerDomainList().add(selectedAnswerDomain);
+        }
+
+        // calculate total mbti
+        MBTIType mbtiType = this.CalculateMBTI(mbti);
+
+        //create result
+        ResultDomain resultDomain = resultService.findMBTIResult(mbtiType);
+        resultRecordDomain.setResultDomain(resultDomain);
+
+        resultRecordDomain.setResultRecordState(ResultRecordState.DONE);
+        return new ResultRecordDTO(resultRecordDomain);
+    }
+
 
     private MBTIType CalculateMBTI(Map<AnswerType,Integer> mbti){
 
