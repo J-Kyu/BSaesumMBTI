@@ -39,6 +39,7 @@ import java.util.Collections;
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/v1/api")
+@CrossOrigin(origins = {"*"})
 public class ResultRecordController {
 
     private final ResultRecordService resultRecordService;

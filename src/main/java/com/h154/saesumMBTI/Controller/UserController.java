@@ -28,6 +28,7 @@ import java.util.Collections;
 @RequiredArgsConstructor
 @Slf4j
 @RequestMapping("/v1/api")
+@CrossOrigin(origins = {"*"})
 public class UserController {
 
     private final UserService userService;

@@ -36,6 +36,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/v1/admin/api")
+@CrossOrigin(origins = {"*"})
 public class SurveyController {
 
     private final SurveyService surveyService;
