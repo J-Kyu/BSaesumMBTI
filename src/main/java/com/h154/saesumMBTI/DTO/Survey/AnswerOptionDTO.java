@@ -24,7 +24,6 @@ public class AnswerOptionDTO {
     };
 
 
-    @JsonIgnore
     private Long id;
     private String answerContents;
 

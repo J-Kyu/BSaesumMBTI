@@ -28,7 +28,6 @@ public class QuestionDTO {
         this.answerOptionDTOList.add(aop);
     }
 
-    @JsonIgnore
     private Long id;
 
     private String questionContents;

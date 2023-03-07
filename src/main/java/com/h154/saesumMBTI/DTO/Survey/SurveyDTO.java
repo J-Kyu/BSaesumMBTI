@@ -38,7 +38,6 @@ public class SurveyDTO {
 
     }
 
-    @JsonIgnore
     private Long id;
 
     private String title;

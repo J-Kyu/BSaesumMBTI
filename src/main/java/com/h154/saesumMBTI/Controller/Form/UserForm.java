@@ -27,7 +27,7 @@ public class UserForm {
     @Schema(description = "Access Token", defaultValue = "ABCD12345")
     private String accessToken;
 
+    @Schema(description = "OAuthType", defaultValue="DEFAULT")
     @Enumerated(EnumType.STRING)
-    @Schema(description = "OAuthType", defaultValue = "KAKAO")
-    private OAuthTypeEnum oAuthType;
+    private OAuthTypeEnum oauthType;
 }

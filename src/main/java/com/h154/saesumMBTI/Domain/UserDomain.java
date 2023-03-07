@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,8 +23,8 @@ public class UserDomain {
         // for creating user
         this.nickname = form.getNickname();
         this.accessToken = form.getAccessToken();
-        this.oAuthType = form.getOAuthType();
-        this.uuid = form.getOAuthType() + "_" + form.getUid();
+        this.oAuthType = form.getOauthType();
+        this.uuid = form.getOauthType() + "_" + form.getUid();
         this.userRoleType = UserRoleType.USER;
 
         this.genDateTime = new Date();
@@ -36,19 +37,24 @@ public class UserDomain {
     private Long id;
 
     @Column(length = 10)
+    @NotNull
     private String nickname;
 
     @Enumerated(EnumType.STRING)
+    @NotNull
     private OAuthTypeEnum oAuthType;
 
     private String uuid;
 
+
     private String accessToken;
 
     @Enumerated(EnumType.STRING)
+    @NotNull
     private UserRoleType userRoleType;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @NotNull
     private Date genDateTime;
 
     @OneToMany(mappedBy = "userDomain")

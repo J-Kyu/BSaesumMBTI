@@ -26,7 +26,6 @@ public class UserDTO {
         this.userRoleType = userDomain.getUserRoleType();
     }
 
-    @JsonIgnore
     private Long id;
 
     private String nickname;

@@ -55,8 +55,11 @@ public class UserController {
 
 
         try {
+            log.info(form.toString());
             UserDomain userDomain = new UserDomain(); //준영속 상태....persist 를 해야 영속상태가 된다
             userDomain.SetDomainData(form);
+            log.info(userDomain.toString());
+
 
             userService.join(userDomain);
             OKResponseUserDTO okResponse = new OKResponseUserDTO("회원 생성 성공", new UserDTO(userDomain));
@@ -79,7 +82,7 @@ public class UserController {
             @ApiResponse(responseCode = "400", description = "BAD REQUEST", content = @Content(schema = @Schema(implementation = BadRequestResponse.class))),
             @ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR",  content = @Content(schema = @Schema(implementation = InternalServerErrorResponse.class)))
     })
-    @PostMapping(value = "/user/{id}/withdraw")
+    @DeleteMapping(value = "/user/{id}/withdraw")
     public ResponseEntity withdraw(
             @PathVariable("id") Long id
     ){
